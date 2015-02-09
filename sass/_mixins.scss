@@ -1,0 +1,12 @@
+@mixin sm($pathToIcon) {
+	background: url($pathToIcon);
+    background-size: 100%;
+    color: $lightgrey;
+    width: 32px;
+    height: 22px;
+    display: inline-block;
+    margin: 1.15em;
+}
+
+.sm_fb {@include sm('../images/facebook26.png');}
+.sm_twt {@include sm('../images/twitter16.png');}

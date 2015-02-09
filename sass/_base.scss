@@ -4,9 +4,12 @@
   box-sizing: border-box;
 }
 
-body{
-    min-width: 900px;
-    width: auto !important;
+body,html{
+    width: 100%;
+    min-width: 600px;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
 }
 div.secta{
     background-color: $bond;
@@ -102,23 +105,29 @@ footer{
 }
 
 .imagebackground{
-    background-image:url(http://placehold.it/2000x600);
-
+    background:url(http://placehold.it/2000x800);
+    width:100%;
+    padding-top: 5em;
+    margin-bottom: -0.5em;
+    height: 30em;
+    display:block;
+    background-position:center;
     
 }
 
 video{
-    width: 100%;
+    width: 80%;
 }
 div.mainbody {
     position: relative; 
-    padding: 3em 5em 5em;
+    padding: 3em;
     width : 100%;
     margin-top: 0;
+    text-align: center;
 
     h1{
         font-size: 1.6em;
-        color: grey;
+        color: $pachyderm;
         margin-bottom: 18px;
     }
 
@@ -137,10 +146,6 @@ a.nav-active{
     color: $innocence-sel;
     
 }
-body {
-    margin: 0;
-}
-
 
 .section{
     display: block;

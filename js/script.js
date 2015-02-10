@@ -38,22 +38,52 @@ $(window).scroll(function(){
     for (var i=0; i < sectArr.length; i++) {
         var section = sectArr[i];
         var divPos = $(section).offset().top; // get the offset of the div from the top of page
-        var divHeight = docHeight;
+        var divHeight = docHeight - divPos;
         if(i+1 < sectArr.length){
             divHeight = $(sectArr[i+1]).offset().top - divPos;    
         }
-        if (windowPos >= divPos-2 && windowPos < (divPos-2 + divHeight)) {
-            $("a[href='" + section + "']").addClass("nav-active");
+        if (windowPos >= divPos-4 && windowPos < (divPos-4 + divHeight)) {
+            $("a[href='" + section + "']").addClass("highlight");
         } else {
-            $("a[href='" + section + "']").removeClass("nav-active");
+            $("a[href='" + section + "']").removeClass("highlight");
         }
     }
 
-    if(windowPos + windowHeight == docHeight) {
-        if (!$("nav li:last-child a").hasClass("nav-active")) {
-            var navActiveCurrent = $(".nav-active").attr("href");
-            $("a[href='" + navActiveCurrent + "']").removeClass("nav-active");
-            $("nav li:last-child a").addClass("nav-active");
+    if(windowPos + windowHeight >= docHeight) {
+        if (!$("nav li:last-child a").hasClass("highlight")) {
+            $("a[href='" + $(".highlight").attr("href") + "']").removeClass("highlight");
+            $("nav li:last-child a").addClass("highlight");
         }
     }
+});
+
+
+/* carousel */
+jQuery(function($){
+    var $carousel = $('.carousel');
+    var $slide = 'li';
+    var $transition = 1000;
+    var $time = 4000;
+    
+    function slides(){
+        return $carousel.find($slide);   
+    }
+    
+    slides().fadeOut();
+    
+    slides().first().addClass('active');
+    slides().first().fadeIn($transition);
+    
+    $interval = setInterval(
+        function(){
+            var $i = $carousel.find($slide + '.active').index();
+            
+            slides().eq($i).removeClass('active');
+            slides().eq($i).fadeOut($transition);
+            
+            if(slides().length == $i+1) $i = -1;
+            
+            slides().eq($i+1).fadeIn($transition);
+            slides().eq($i+1).addClass('active');
+        }, $transition+$time );
 });

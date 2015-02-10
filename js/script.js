@@ -62,7 +62,7 @@ $(window).scroll(function(){
 jQuery(function($){
     var $carousel = $('.carousel');
     var $slide = 'li';
-    var $transition = 1000;
+    var $transition = 1200;
     var $time = 4000;
     
     function slides(){

@@ -5,14 +5,18 @@
 }
 
 body,html{
-    width: 100%;
     min-width: 600px;
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+    font-family: sans-serif;
+}
+div.column{
+    @include column-count(3);
 }
 div.secta{
     background-color: $bond;
+
 }
 div.sectb{
     background-color: $forever;
@@ -20,6 +24,10 @@ div.sectb{
 
 div.sectc{
     background-color: $bond;
+    a{
+        display:inline;
+        padding-right: 2em;
+    }
 }
 
 
@@ -50,6 +58,8 @@ nav {
     position:fixed;
     display: inline;
     box-shadow: 0 2px 3px rgba(0,0,0,.4);
+    @include transition-property(all);
+    @include transition-duration(0.8s);
     
     h1{
         font-size: 1.4em;
@@ -76,7 +86,11 @@ nav {
     a:hover{
         color: $innocence-sel;
     }
-    
+    a, li, h1{
+        @include transition-property(all);
+        @include transition-duration(0.8s);
+    }
+
 }
 
 footer{
@@ -96,49 +110,84 @@ footer{
         margin-right:0.5em;
     }
 }
-
 .carousel{
-    margin:20px 0 0 0;
-    width: 100%;
-    height:40em;
-    position:relative;
     overflow:hidden;
+    height: 40em;
+    background: $forever;
+    position:relative;
+    width:100%;
+    ul{
+        padding: 0;
+        margin: 0;
+    }
     
     li{
+        position:absolute;
         display:none;
-        position: absolute;
+        width:100%;
         top:0;
         left:0;
-    }
-    
-    img{
-        width:100%;
+        list-style:none;
+        float: left;
         
     }
-}
+    img{
+        width: 100%;    
+    }
+    
+    i{
+        z-index: 1000;
+        top: 85%;
+        color: rgba(255,255,255,0.7);
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #leftArrow{
+        float: left;
+        padding-left:0.5em;
+        
+    }
+    
+    #rightArrow{
+        float: right;
+        padding-right:0.5em;
+        
+    }
 
-.imagebackground{
-    background:url(http://placehold.it/2000x800);
-    width:100%;
-    padding-top: 5em;
-    margin-bottom: -0.5em;
-    height: 35em;
-    display:block;
-    background-position:center;
+    
     
 }
 
 .fixedImage{
+    display: table;
     background:url("../images/UIUC_alma_mater.jpg") no-repeat;
     background-size:100%;
+    position:relative;
     width:100%;
     margin:0;
     border:0;
     padding:0;
     height: 25em;
     background-attachment: fixed;
-}
 
+}
+.layer {
+    display:table-cell;
+    background-color: rgba(75, 75, 75, 0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    font-family: cursive;
+    p{
+        z-index:100;
+        color: white;
+        font-size:4em;
+    }
+}
 video{
     width: 80%;
 }
@@ -172,6 +221,43 @@ a.highlight{
     
 }
 
+img {
+  max-width: 100%; // Makes images responsive
+}
+
+.modal {
+  background-color: #333;
+  background-color: rgba(#333, 0.9);
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  overflow-y: scroll;
+  padding: 6em;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  &:before {
+    background-color: #333;
+    background-color: rgba(#333, 0.9);
+    color: #eee;
+    content: "x";
+    font-family: sans-serif;
+    padding: 6px 12px;
+    position: fixed;
+    text-transform: uppercase;
+  }
+  img {
+    box-shadow: 0 0 6px 3px #333;
+  }
+}
+
+// No Background Scroll
+
+.no-scroll {
+  overflow: hidden;
+}
+
 .section{
     display: block;
 }
@@ -181,9 +267,4 @@ a.highlight{
     margin: -1.9em 0 0;
 }
 
-nav, a, li{
-    transition: all 0.8s;
-    -moz-transition: all 0.8s;
-    -webkit-transition: all 0.8s;
-    -o-transition: all 0.8s;
-}
+

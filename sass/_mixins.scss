@@ -1,12 +1,16 @@
-@mixin sm($pathToIcon) {
-	background: url($pathToIcon);
-    background-size: 100%;
-    color: $lightgrey;
-    width: 32px;
-    height: 22px;
-    display: inline-block;
-    margin: 1.15em;
+@mixin transition-property($properties...) {
+  $properties: set-arglist-default($properties, $default-transition-property);
+  @include with-each-prefix(css-transitions, $transition-support-threshold) {
+    $props: if($current-prefix, prefixed-for-transition($current-prefix, $properties), $properties);
+    @include prefix-prop(transition-property, $props);
+  }
 }
 
-.sm_fb {@include sm('../images/facebook26.png');}
-.sm_twt {@include sm('../images/twitter16.png');}
+@mixin transition-duration($durations...) {
+  $durations: set-arglist-default($durations, $default-transition-duration);
+  @include prefixed-properties(css-transitions, $transition-support-threshold, (transition-duration: $durations));
+}
+
+@mixin column-count($count) {
+  @include prefixed-properties(multicolumn, $multicolumn-support-threshold, (column-count: $count));
+}

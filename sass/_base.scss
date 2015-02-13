@@ -109,6 +109,11 @@ footer{
         display: inline-block;
         margin-right:0.5em;
     }
+    
+    a{
+        text-decoration: none;
+        color:$darkpachyderm;
+    }
 }
 .carousel{
     overflow:hidden;
@@ -137,7 +142,7 @@ footer{
     
     i{
         z-index: 1000;
-        top: 85%;
+        top: 55%;
         color: rgba(255,255,255,0.7);
         position: relative;
         cursor: pointer;
@@ -145,13 +150,13 @@ footer{
     
     #leftArrow{
         float: left;
-        padding-left:0.5em;
+        padding-left:10px;
         
     }
     
     #rightArrow{
         float: right;
-        padding-right:0.5em;
+        padding-right:10px;
         
     }
 

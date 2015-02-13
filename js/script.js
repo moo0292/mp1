@@ -42,7 +42,7 @@ $(window).scroll(function(){
         if(i+1 < sectArr.length){
             divHeight = $(sectArr[i+1]).offset().top - divPos;    
         }
-        if (windowPos >= divPos-4 && windowPos < (divPos-4 + divHeight)) {
+        if (windowPos >= divPos-20 && windowPos < (divPos-20 + divHeight)) {
             $("a[href='" + section + "']").addClass("highlight");
         } else {
             $("a[href='" + section + "']").removeClass("highlight");
@@ -87,7 +87,7 @@ $( window ).resize(function() {
 jQuery(function(){
     var carousel = $('.carousel');
     var transition = 1000;
-    var time = 4000;
+    var time = 5000;
     
     function slides(){
         return carousel.find('li');   

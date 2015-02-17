@@ -1,21 +1,18 @@
 /* resizing nav bar */
 $(document).on("scroll",function(){
     if($(document).scrollTop()>100){
-        $("nav").removeClass("large").addClass("small");
-        //$(".section").removeClass("section-large").addClass("section-small");
-        
+        $("nav").removeClass("large").addClass("small"); 
     } else{
         $("nav").removeClass("small").addClass("large");
-        //$(".section").removeClass("section-small").addClass("section-large");
     }
 });
 
 /* smooth scrolling */
-var $root = $('html, body');
+var root = $('html, body');
 $("nav a").click(function() {
     var href = $(this.hash);
     href =href.length ? href : $('[id=' + this.hash.slice(1) +']');
-    $root.animate({
+    root.animate({
         scrollTop: $(href.selector).offset().top
     }, 800, function () {
         window.location.hash = href.selector;
@@ -30,12 +27,12 @@ for (var i=0; i < sectionList.length; i++) {
 }
 
 $(window).scroll(function(){
-    var windowPos = $(window).scrollTop(); // get the offset of the window from the top of page
-    var windowHeight = $(window).height(); // get the height of the window
+    var windowPos = $(window).scrollTop(); 
+    var windowHeight = $(window).height(); 
     var docHeight = $(document).height();
     
     for (var i=0; i < sectArr.length; i++) {
-        var divPos = $(sectArr[i]).offset().top; // get the offset of the div from the top of page
+        var divPos = $(sectArr[i]).offset().top; 
         var divHeight = docHeight - divPos;
         if(i+1 < sectArr.length){
             divHeight = $(sectArr[i+1]).offset().top - divPos;    
@@ -72,13 +69,12 @@ jQuery(function(){
     slides().first().addClass('active');
     slides().first().fadeIn(transition);
     
-    interval = setInterval(
+    interval = setInterval( 
         function(){
             var i = carousel.find('li' + '.active').index();
             slides().eq(i).fadeOut(transition);            
             slides().eq(i).removeClass('active');
 
-            
             if(slides().length == i+1) i = -1;
             
             slides().eq(i+1).fadeIn(transition);
@@ -96,6 +92,8 @@ jQuery(function(){
                 i--;
             slides().eq(i).fadeIn(transition);
             slides().eq(i).addClass('active');
+        
+            //reset interval
             clearInterval(interval);
             interval = setInterval(function(){
                 var i = carousel.find('li' + '.active').index();
@@ -121,6 +119,8 @@ jQuery(function(){
                 i++;
             slides().eq(i).fadeIn(transition);
             slides().eq(i).addClass('active');
+        
+            //reset interval
             clearInterval(interval);
             interval = setInterval(function(){
                 var i = carousel.find('li' + '.active').index();
@@ -140,17 +140,13 @@ jQuery(function(){
 /*modal */
 
 jQuery(function() {
-  
-  // Build modal
   $(".open-modal").on('click', function(e) {
     e.preventDefault();
-    var image = $(this).attr('href');
     $('html').addClass('no-scroll');
-    $('body').append('<div class="modal"><img src="' + image + '">');
+    $('body').append('<div class="modal"><img src="' + $(this).attr('href') + '">');
     return false;
   });
-  
-  // Close modal
+
     $('body').on('click', '.modal', function() {
     $('html').removeClass('no-scroll');
     $('.modal').remove();

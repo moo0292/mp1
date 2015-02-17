@@ -144,7 +144,7 @@ footer{
     i{
         z-index: 1000;
         top: 55%;
-        color: rgba(255,255,255,0.7);
+        color: $arrow;
         position: relative;
         cursor: pointer;
     }
@@ -180,7 +180,7 @@ footer{
 }
 .layer {
     display:table-cell;
-    background-color: rgba(75, 75, 75, 0.7);
+    background-color: $layer;
     top: 0;
     left: 0;
     width: 100%;
@@ -238,9 +238,7 @@ img {
 }
 
 .modal {
-  background-color: #333;
-  background-color: rgba(#333, 0.9);
-  cursor: pointer;
+  background-color: $modal;
   height: 100%;
   left: 0;
   overflow-y: scroll;
@@ -250,9 +248,9 @@ img {
   top: 0;
   width: 100%;
   &:before {
-    background-color: #333;
-    background-color: rgba(#333, 0.9);
-    color: #eee;
+    background-color: $modal;
+    cursor: pointer;
+    color: white;
     content: "x";
     font-family: sans-serif;
     padding: 6px 12px;
@@ -260,7 +258,7 @@ img {
     text-transform: uppercase;
   }
   img {
-    box-shadow: 0 0 6px 3px #333;
+    box-shadow: 0 0 6px 3px $modal;
   }
 }
 

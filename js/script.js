@@ -23,12 +23,11 @@ $("nav a").click(function() {
     return false;
 });
 /* highlighting nav bar */
-var sectionList = $("nav li").children(); // find the a children of the list items
-var sectArr = []; // create the empty aArray
+var sectArr = []; 
+var sectionList = $("nav li").children();
 for (var i=0; i < sectionList.length; i++) {    
-    var sect = sectionList[i];
-    sectArr.push($(sect).attr('href'));
-} // this for loop fills the aArray with attribute href values
+    sectArr.push($(sectionList[i]).attr('href'));
+}
 
 $(window).scroll(function(){
     var windowPos = $(window).scrollTop(); // get the offset of the window from the top of page
@@ -36,16 +35,15 @@ $(window).scroll(function(){
     var docHeight = $(document).height();
     
     for (var i=0; i < sectArr.length; i++) {
-        var section = sectArr[i];
-        var divPos = $(section).offset().top; // get the offset of the div from the top of page
+        var divPos = $(sectArr[i]).offset().top; // get the offset of the div from the top of page
         var divHeight = docHeight - divPos;
         if(i+1 < sectArr.length){
             divHeight = $(sectArr[i+1]).offset().top - divPos;    
         }
         if (windowPos >= divPos-20 && windowPos < (divPos-20 + divHeight)) {
-            $("a[href='" + section + "']").addClass("highlight");
+            $("a[href='" + sectArr[i] + "']").addClass("highlight");
         } else {
-            $("a[href='" + section + "']").removeClass("highlight");
+            $("a[href='" + sectArr[i] + "']").removeClass("highlight");
         }
     }
 
@@ -60,34 +58,10 @@ $(window).scroll(function(){
 
 /* carousel */
 
-/*$(document).ready(function(){
-    
-    $('.carousel ul').css({width: ($( window ).width()*3)});
-    $('.carousel li').css({width: ($( window ).width())});
-    $('.carousel img').css({width: ($( window ).width())});
-    $('.carousel').css({width: ($( window ).width())});
-	// Set the interval to be 5 seconds
-	var t = setInterval(function(){
-		$(".carousel ul").animate({marginLeft:-1*($(window).width())},1000,function(){
-			$(this).find("li:last").after($(this).find("li:first"));
-			$(this).css({marginLeft:0});
-		})
-	},4000);
-});
-
-$( window ).resize(function() {
-    $('.carousel ul').css({width: ($( window ).width()*3)});
-    $('.carousel li').css({width: ($( window ).width())});
-    $('.carousel').css({width: ($( window ).width())});
-    $('.carousel img').css({width: ($( window ).width())});
-});*/
-
-
-
 jQuery(function(){
     var carousel = $('.carousel');
     var transition = 1000;
-    var time = 5000;
+    var time = 4000;
     
     function slides(){
         return carousel.find('li');   
@@ -122,6 +96,18 @@ jQuery(function(){
                 i--;
             slides().eq(i).fadeIn(transition);
             slides().eq(i).addClass('active');
+            clearInterval(interval);
+            interval = setInterval(function(){
+                var i = carousel.find('li' + '.active').index();
+                slides().eq(i).fadeOut(transition);            
+                slides().eq(i).removeClass('active');
+
+
+                if(slides().length == i+1) i = -1;
+
+                slides().eq(i+1).fadeIn(transition);
+                slides().eq(i+1).addClass('active');
+            }, transition+time );
     });
 
     $("#rightArrow").on('click', function(){
@@ -135,10 +121,23 @@ jQuery(function(){
                 i++;
             slides().eq(i).fadeIn(transition);
             slides().eq(i).addClass('active');
+            clearInterval(interval);
+            interval = setInterval(function(){
+                var i = carousel.find('li' + '.active').index();
+                slides().eq(i).fadeOut(transition);            
+                slides().eq(i).removeClass('active');
+
+
+                if(slides().length == i+1) i = -1;
+
+                slides().eq(i+1).fadeIn(transition);
+                slides().eq(i+1).addClass('active');
+            }, transition+time );
     });
             
 });
 
+/*modal */
 
 jQuery(function() {
   

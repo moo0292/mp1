@@ -26,7 +26,8 @@ div.sectc{
     background-color: $bond;
     a{
         display:inline;
-        padding-right: 2em;
+        left:auto;
+        right:auto;
     }
 }
 
@@ -194,7 +195,7 @@ footer{
     }
 }
 video{
-    width: 80%;
+    width: 75%;
 }
 div.mainbody {
     position: relative; 
@@ -202,6 +203,7 @@ div.mainbody {
     width : 100%;
     margin-top: 0;
     text-align: center;
+    align-items:center;
 
     h1{
         font-size: 1.6em;
@@ -209,8 +211,13 @@ div.mainbody {
         margin-bottom: 18px;
     }
 
+    h2{
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
     p{
         margin-bottom: 24px;
+        font-size: 1.1em;
         line-height: 150%;
     }
 }

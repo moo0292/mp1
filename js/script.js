@@ -1,4 +1,5 @@
 /* resizing nav bar */
+//reduce nav bar size if window is scrolled past the nav height
 $(document).on("scroll",function(){
     if($(document).scrollTop()>100){
         $("nav").removeClass("large").addClass("small"); 
@@ -8,6 +9,7 @@ $(document).on("scroll",function(){
 });
 
 /* smooth scrolling */
+//use animation to make scrolling smooth
 var root = $('html, body');
 $("nav a").click(function() {
     var href = $(this.hash);
@@ -19,18 +21,22 @@ $("nav a").click(function() {
     });
     return false;
 });
+
 /* highlighting nav bar */
 var sectArr = []; 
+//store each href tag in an array to call upon them later
 var sectionList = $("nav li").children();
 for (var i=0; i < sectionList.length; i++) {    
     sectArr.push($(sectionList[i]).attr('href'));
 }
 
 $(window).scroll(function(){
+    //get various positions and offsets
     var windowPos = $(window).scrollTop(); 
     var windowHeight = $(window).height(); 
     var docHeight = $(document).height();
     
+    //calculate whether the window is in range of a section from href tags stored in previous array
     for (var i=0; i < sectArr.length; i++) {
         var divPos = $(sectArr[i]).offset().top; 
         var divHeight = docHeight - divPos;
@@ -43,7 +49,7 @@ $(window).scroll(function(){
             $("a[href='" + sectArr[i] + "']").removeClass("highlight");
         }
     }
-
+    //account for the bottom of the page attributing to the last section
     if(windowPos + windowHeight >= docHeight) {
         if (!$("nav li:last-child a").hasClass("highlight")) {
             $("a[href='" + $(".highlight").attr("href") + "']").removeClass("highlight");
@@ -81,6 +87,7 @@ jQuery(function(){
             slides().eq(i+1).addClass('active');
         }, transition+time );
     
+    //get previous slide on click on left arrow
     $("#leftArrow").on('click', function(){
             var i = carousel.find('li' + '.active').index();
             slides().eq(i).fadeOut(transition);            
@@ -107,7 +114,8 @@ jQuery(function(){
                 slides().eq(i+1).addClass('active');
             }, transition+time );
     });
-
+    
+    //get next slide on click on right arrow
     $("#rightArrow").on('click', function(){
             var i = carousel.find('li' + '.active').index();
             slides().eq(i).fadeOut(transition);            
@@ -140,13 +148,14 @@ jQuery(function(){
 /*modal */
 
 jQuery(function() {
+    // click to open modal
   $(".open-modal").on('click', function(e) {
     e.preventDefault();
     $('html').addClass('no-scroll');
     $('body').append('<div class="modal"><img src="' + $(this).attr('href') + '">');
     return false;
   });
-
+    // click any where to close modal
     $('body').on('click', '.modal', function() {
     $('html').removeClass('no-scroll');
     $('.modal').remove();

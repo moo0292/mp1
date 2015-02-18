@@ -11,6 +11,7 @@ body,html{
     overflow-x: hidden; 
     font-family: sans-serif;
 }
+/* divs to seperate sections */
 div.column{
     @include column-count(3);
 }
@@ -20,6 +21,13 @@ div.secta{
 }
 div.sectb{
     background-color: $forever;
+    #caption{
+        font-size: 1em;   
+    }
+    video{
+    width: 80%;
+    max-width: 23em;
+    }
 }
 
 div.sectc{
@@ -31,7 +39,46 @@ div.sectc{
     }
 }
 
+/*section heading to balance offset*/
+.section{
+    display: block;
+}
 
+.section-small{
+    height: 2.5em;
+    margin: -1.9em 0 0;
+}
+
+div.mainbody {
+    position: relative; 
+    padding: 3em;
+    width : 100%;
+    margin-top: 0;
+    text-align: center;
+    align-items:center;
+
+    h1{
+        font-size: 1.6em;
+        color: $pachyderm;
+        margin-bottom: 18px;
+    }
+
+    h2{
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    p{
+        margin-bottom: 24px;
+        font-size: 1.1em;
+        line-height: 150%;
+    }
+}
+/*floating columns*/
+.column-left{ float: left; width: 33%; }
+.column-right{ float: right; width: 33%; }
+.column-center{ display: inline-block; width: 33%; }
+
+/* navigation bar and its sizes */
 nav.large{
     height: 6em;  
     li{
@@ -91,6 +138,13 @@ nav {
         @include transition-property(all);
         @include transition-duration(0.8s);
     }
+    
+    a.highlight{
+    border-top: 2px solid $innocence-sel;
+    padding-top: 5px;
+    color: $innocence-sel;
+    
+    }
 
 }
 
@@ -116,6 +170,8 @@ footer{
         color:$darkpachyderm;
     }
 }
+
+/* implementing the carousel */
 .carousel{
     overflow:hidden;
     height: 40em;
@@ -164,7 +220,7 @@ footer{
     
     
 }
-
+/* fixed image and its overlay */
 .fixedImage{
     display: table;
     background:url("../images/UIUC_alma_mater.jpg") no-repeat;
@@ -194,49 +250,12 @@ footer{
         font-size:4em;
     }
 }
-video{
-    width: 75%;
-}
-div.mainbody {
-    position: relative; 
-    padding: 3em;
-    width : 100%;
-    margin-top: 0;
-    text-align: center;
-    align-items:center;
-
-    h1{
-        font-size: 1.6em;
-        color: $pachyderm;
-        margin-bottom: 18px;
-    }
-
-    h2{
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-    p{
-        margin-bottom: 24px;
-        font-size: 1.1em;
-        line-height: 150%;
-    }
-}
-
-.column-left{ float: left; width: 33%; }
-.column-right{ float: right; width: 33%; }
-.column-center{ display: inline-block; width: 33%; }
-
-a.highlight{
-    border-top: 2px solid $innocence-sel;
-    padding-top: 5px;
-    color: $innocence-sel;
-    
-}
 
 img {
   max-width: 100%; // Makes images responsive
 }
 
+/* modal and the "X" symbol */
 .modal {
   background-color: $modal;
   height: 100%;
@@ -261,20 +280,6 @@ img {
     box-shadow: 0 0 6px 3px $modal;
   }
 }
-
-// No Background Scroll
-
 .no-scroll {
   overflow: hidden;
 }
-
-.section{
-    display: block;
-}
-
-.section-small{
-    height: 2.5em;
-    margin: -1.9em 0 0;
-}
-
-
